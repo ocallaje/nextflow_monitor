@@ -27,7 +27,7 @@ curl -X DELETE 'http://localhost:8000/register/e2fa90682255472b9221709566dbceba'
 Registration will return a websocket URL. Use this to connect to the WebSocket e.g.
 Bash:
 ```bash
-`websocat ws://127.0.0.1:8000/ws/625ac78b88e047a1bc7b3f8459702078`
+websocat ws://127.0.0.1:8000/ws/625ac78b88e047a1bc7b3f8459702078
 ```
 
 Then, you can publish messages to websocket-connected clients using HTTP requests
