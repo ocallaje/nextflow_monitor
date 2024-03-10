@@ -69,3 +69,4 @@ json
 }
 ```
 Replace your_topic_here with the desired topic and your_message_here with the message you want to publish.
+"user_id" specifies which client to send the message to. Omitting "user_id" will send the message to all clients subscribed to the given topic. 
