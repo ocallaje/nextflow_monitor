@@ -12,7 +12,7 @@ make dev
 ```bash
 chmod +x build.sh
 ./build.sh
-docker run --restart=always ocallaje/nextflow_monitor
+docker run --restart=always -p 7777:7777/tcp ocallaje/nextflow_monitor:0.1
 ```
 
 ### Clients

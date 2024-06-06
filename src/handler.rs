@@ -2,6 +2,8 @@ use crate::{ws, Client, Clients, Result};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 use warp::{http::StatusCode, reply::json, ws::Message, Reply};
+use std::env;
+use std::io::Read;
 #[derive(Deserialize, Debug)]
 pub struct RegisterRequest {
     user_id: usize,
@@ -50,10 +52,11 @@ pub async fn register_handler(body: RegisterRequest, clients: Clients) -> Result
     let user_id = body.user_id;
     let topic = body.topic; // Capture the entry topic
     let uuid = Uuid::new_v4().as_simple().to_string();
+    let ip_address:String = env::var("HOST_IP").expect("HOST_IP must be set in .env");
 
     register_client(uuid.clone(), user_id, topic, clients).await; // Pass the entry topic
-    Ok(json(&RegisterResponse {
-        url: format!("ws://0.0.0.0:7777/ws/{}", uuid),
+    Ok(json(&RegisterResponse {  
+        url: format!("ws://{}:7777/ws/{}", &ip_address, uuid),
     }))
 }
 
